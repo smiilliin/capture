@@ -2,9 +2,10 @@ import keyboard
 from PIL import ImageGrab
 import time
 import os
+from plyer import notification
 
 
-def capture(hotkey, directory):
+def capture(hotkey, directory, notify=False):
     print(f"started to capture with hotkey({hotkey})")
 
     while True:
@@ -23,7 +24,16 @@ def capture(hotkey, directory):
 
             screenshot.save(filePath, "PNG")
 
-            print(f"Saved to: {filePath}")
+            print(f"Saved to: {os.path.abspath(filePath)}")
+
+            if notify:
+                notification.notify(
+                    title='Capture',
+                    message=f'Captured a screenshot at {os.path.abspath(filePath)}',
+                    app_name="capture",
+                    timeout=1,
+                )
+
         except Exception as e:
             print(f"Error: {e}")
 

@@ -2,4 +2,5 @@ from capture import capture, getHotkeyConfig, getDirectoryConfig, changeDirector
 
 
 if __name__ == "__main__":
-    capture(getHotkeyConfig(), changeDirectoryNormalize(getDirectoryConfig()))
+    capture(getHotkeyConfig(), changeDirectoryNormalize(
+        getDirectoryConfig()), True)
